@@ -15,4 +15,9 @@
 
     <string name="hello_world">Hello World!</string>
     <string name="action_settings">Settings</string>
+
+    <string name="Username">Usuario.</string>
+    <string name="Password">Password.</string>
+    <string name="LoginBtn">Iniciar Sesión.</string>
+    <string name="SignupBtn">Registro.</string>
 </resources>
