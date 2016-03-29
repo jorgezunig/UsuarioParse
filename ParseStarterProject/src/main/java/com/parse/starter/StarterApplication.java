@@ -25,7 +25,14 @@ public class StarterApplication extends Application {
     Parse.enableLocalDatastore(this);
 
     // Add your initialization code here
-    Parse.initialize(this);
+    //Parse.initialize(this);
+    //Vinculo de Aplicacion Parse con Heroku
+    Parse.initialize(new Parse.Configuration.Builder(this)
+                    .applicationId("nuevaAppId")
+                    .clientKey(null)
+                    .server("https://usuarioparse.herokuapp.com/parse/")
+                    .build()
+    );
 
     ParseUser.enableAutomaticUser();
     ParseACL defaultACL = new ParseACL();
