@@ -35,6 +35,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        // Añadiendo clases
+        <activity android:name=".LoginSignupActivity" >
+        </activity>
+        <activity android:name=".Bienvenida" >
+        </activity>
+
     </application>
 
 </manifest>
