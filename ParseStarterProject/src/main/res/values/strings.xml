@@ -20,4 +20,6 @@
     <string name="Password">Password.</string>
     <string name="LoginBtn">Iniciar Sesión.</string>
     <string name="SignupBtn">Registro.</string>
+    <string name="LogoutBtn">Salir</string>
+    <string name="Bienvenida">Bienvenido!</string>
 </resources>
