@@ -17,9 +17,60 @@
                 tools:context=".MainActivity">
 
     <TextView
-        android:text="@string/hello_world"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:id="@+id/txtusername"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Username"
+        android:layout_marginTop="31dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:layout_below="@+id/txtusername"
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:id="@+id/txtpassword"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Password"
+        android:layout_below="@+id/username"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:layout_below="@+id/txtpassword"
+        android:layout_alignParentLeft="true" />
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="165dp"
+        android:layout_height="wrap_content"
+        android:text="@string/LoginBtn"
+        android:layout_alignTop="@+id/signup"
+        android:layout_alignRight="@+id/password"
+        android:layout_alignEnd="@+id/password" />
+
+    <Button
+        android:id="@+id/signup"
+        android:layout_width="165dp"
+        android:layout_height="wrap_content"
+        android:text="@string/SignupBtn"
+        android:layout_below="@+id/password"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="34dp" />
+
+
 
 </RelativeLayout>
 <!-- From: file:/C:/Users/LENOVO/AndroidStudioProjects/UsuarioParse/ParseStarterProject/src/main/res/layout/activity_main.xml -->

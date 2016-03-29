@@ -8,12 +8,15 @@
  */
 package com.parse.starter;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.parse.ParseAnalytics;
+import com.parse.ParseAnonymousUtils;
+import com.parse.ParseUser;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -23,28 +26,36 @@ public class MainActivity extends ActionBarActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    ParseAnalytics.trackAppOpenedInBackground(getIntent());
-  }
+    //ParseObject datos = new ParseObject("Usuario");
+    //datos.put("nombre", "Fany");
+    //datos.put("edad", 22);
+    //datos.saveInBackground();
 
-  @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
-    // Inflate the menu; this adds items to the action bar if it is present.
-    getMenuInflater().inflate(R.menu.menu_main, menu);
-    return true;
-  }
+    //ParseGeoPoint punto = new ParseGeoPoint(10,10);
+    //datos.put ( "location" , punto);
 
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    // Handle action bar item clicks here. The action bar will
-    // automatically handle clicks on the Home/Up button, so long
-    // as you specify a parent activity in AndroidManifest.xml.
-    int id = item.getItemId();
+    //ParseAnalytics.trackAppOpenedInBackground(getIntent());
 
-    //noinspection SimplifiableIfStatement
-    if (id == R.id.action_settings) {
-      return true;
+    //Inicio de Sesion usuario actual
+    if (ParseAnonymousUtils.isLinked(ParseUser.getCurrentUser())) {
+      Intent intent = new Intent(MainActivity.this,LoginSignupActivity.class);
+      startActivity(intent);
+      finish();
+    } else {
+
+      //Bienvenida de Registro
+      ParseUser currentUser = ParseUser.getCurrentUser();
+      if (currentUser != null) {
+        Intent intent = new Intent(MainActivity.this, Bienvenida.class);
+        startActivity(intent);
+        finish();
+      } else {
+        Intent intent = new Intent(MainActivity.this,LoginSignupActivity.class);
+        startActivity(intent);
+        finish();
+      }
     }
 
-    return super.onOptionsItemSelected(item);
+
   }
 }

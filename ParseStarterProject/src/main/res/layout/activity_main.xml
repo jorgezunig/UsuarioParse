@@ -53,7 +53,7 @@
 
     <Button
         android:id="@+id/login"
-        android:layout_width="175dp"
+        android:layout_width="165dp"
         android:layout_height="wrap_content"
         android:text="@string/LoginBtn"
         android:layout_alignTop="@+id/signup"
@@ -62,7 +62,7 @@
 
     <Button
         android:id="@+id/signup"
-        android:layout_width="175dp"
+        android:layout_width="165dp"
         android:layout_height="wrap_content"
         android:text="@string/SignupBtn"
         android:layout_below="@+id/password"
