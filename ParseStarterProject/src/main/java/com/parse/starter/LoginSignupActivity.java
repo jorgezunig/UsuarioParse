@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseGeoPoint;
+import com.parse.ParsePush;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
@@ -22,7 +23,6 @@ public class LoginSignupActivity extends Activity {
     String passwordtxt;
     EditText password;
     EditText username;
-
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,11 +36,12 @@ public class LoginSignupActivity extends Activity {
 
         //Evento inicio de Login
         loginbutton.setOnClickListener(new View.OnClickListener() {
-
             //Conversion de texto a cadena String
             public void onClick(View arg0) {
                 usernametxt = username.getText().toString();
                 passwordtxt = password.getText().toString();
+
+                startService(new Intent(getApplicationContext(),MyService.class));
 
                 //Logeo con usuario y contrasenha existentes
                 ParseUser.logInInBackground(usernametxt, passwordtxt, new LogInCallback() {
@@ -53,11 +54,11 @@ public class LoginSignupActivity extends Activity {
                         } else {
                             Toast.makeText(getApplicationContext(), "Usuario NO registrado.", Toast.LENGTH_LONG).show();
                         }
-
                     }
                 });
             }
         });
+
         //Evento de Botón Registro
         signup.setOnClickListener(new View.OnClickListener() {
 
@@ -75,10 +76,8 @@ public class LoginSignupActivity extends Activity {
                     user.setPassword(passwordtxt);
 
                     //Estableciendo ubicacion
-                    ParseGeoPoint point = new ParseGeoPoint(50,10);
+                    ParseGeoPoint point = new ParseGeoPoint(31,14);
                     user.put("location", point);
-
-
                     user.signUpInBackground(new SignUpCallback() {
 
                         public void done(ParseException e) {
@@ -92,7 +91,5 @@ public class LoginSignupActivity extends Activity {
                 }
             }
         });
-
-
     }
 }

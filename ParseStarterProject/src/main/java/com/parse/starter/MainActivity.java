@@ -16,6 +16,7 @@ import android.view.MenuItem;
 
 import com.parse.ParseAnalytics;
 import com.parse.ParseAnonymousUtils;
+import com.parse.ParsePush;
 import com.parse.ParseUser;
 
 
@@ -34,15 +35,12 @@ public class MainActivity extends ActionBarActivity {
     //ParseGeoPoint punto = new ParseGeoPoint(10,10);
     //datos.put ( "location" , punto);
 
-    //ParseAnalytics.trackAppOpenedInBackground(getIntent());
-
     //Inicio de Sesion usuario actual
     if (ParseAnonymousUtils.isLinked(ParseUser.getCurrentUser())) {
       Intent intent = new Intent(MainActivity.this,LoginSignupActivity.class);
       startActivity(intent);
       finish();
     } else {
-
       //Bienvenida de Registro
       ParseUser currentUser = ParseUser.getCurrentUser();
       if (currentUser != null) {
@@ -55,7 +53,5 @@ public class MainActivity extends ActionBarActivity {
         finish();
       }
     }
-
-
   }
 }

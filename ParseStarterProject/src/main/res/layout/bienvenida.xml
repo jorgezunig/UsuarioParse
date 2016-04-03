@@ -27,5 +27,12 @@
         android:layout_centerInParent="true"
         android:text="@string/LogoutBtn" />
 
+    <TextView
+        android:id="@+id/txtlocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:layout_centerHorizontal="true" />
 
-</LinearLayout>
+    </LinearLayout>
+

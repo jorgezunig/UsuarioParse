@@ -13,7 +13,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="9"
+        android:minSdkVersion="19"
         android:targetSdkVersion="23" />
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -42,10 +42,13 @@
             </intent-filter>
         </activity>
         // Añadiendo clases
-        <activity android:name="com.parse.starter.LoginSignupActivity" >
-        </activity>
-        <activity android:name="com.parse.starter.Bienvenida" >
-        </activity>
+        <activity android:name="com.parse.starter.LoginSignupActivity" />
+        <activity android:name="com.parse.starter.Bienvenida" />
+
+        <service
+            android:name="com.parse.starter.MyService"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>
