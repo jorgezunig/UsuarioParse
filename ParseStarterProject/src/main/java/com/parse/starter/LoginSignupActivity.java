@@ -2,18 +2,25 @@ package com.parse.starter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseGeoPoint;
 import com.parse.ParsePush;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
+
+import bolts.Task;
 
 
 public class LoginSignupActivity extends Activity {
@@ -23,6 +30,11 @@ public class LoginSignupActivity extends Activity {
     String passwordtxt;
     EditText password;
     EditText username;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +53,11 @@ public class LoginSignupActivity extends Activity {
                 usernametxt = username.getText().toString();
                 passwordtxt = password.getText().toString();
 
-                startService(new Intent(getApplicationContext(),MyService.class));
+                //Iniciando el servicio
+                startService(new Intent(getApplicationContext(), MyService.class));
+                //Objeto task que Ejecuta la AsyncTask
+                TaskT task = new TaskT();
+                task.execute();
 
                 //Logeo con usuario y contrasenha existentes
                 ParseUser.logInInBackground(usernametxt, passwordtxt, new LogInCallback() {
@@ -76,8 +92,9 @@ public class LoginSignupActivity extends Activity {
                     user.setPassword(passwordtxt);
 
                     //Estableciendo ubicacion
-                    ParseGeoPoint point = new ParseGeoPoint(31,14);
+                    ParseGeoPoint point = new ParseGeoPoint(31, 14);
                     user.put("location", point);
+
                     user.signUpInBackground(new SignUpCallback() {
 
                         public void done(ParseException e) {
@@ -91,5 +108,98 @@ public class LoginSignupActivity extends Activity {
                 }
             }
         });
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "LoginSignup Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://com.parse.starter/http/host/path")
+        );
+        AppIndex.AppIndexApi.start(client, viewAction);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "LoginSignup Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://com.parse.starter/http/host/path")
+        );
+        AppIndex.AppIndexApi.end(client, viewAction);
+        client.disconnect();
+    }
+
+
+    private class TaskT extends AsyncTask<Void,Integer,Boolean> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            //Ejecutando tarea 3 segundos
+            Tarea();
+            return true;
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+
+            //Toast.makeText(getApplicationContext(), "Servicio Iniciado", Toast.LENGTH_LONG).show();
+
+        }
+
+        @Override
+        protected void onPostExecute(Boolean bool) {
+            //Ciclo que realiza la actualizacion
+            if (bool){
+                for(int i=0; i<7;i++){
+                    Toast.makeText(getApplicationContext(), "Ubicacion actualizada", Toast.LENGTH_LONG).show();
+                }
+
+            }
+        }
+
+        @Override
+        protected void onCancelled () {
+            super.onCancelled();
+            Toast.makeText(getApplicationContext(), "Tarea Cancelada", Toast.LENGTH_LONG).show();
+        }
+
+        //Metodo que genera la tarea 3 segundos
+        private void Tarea(){
+            try{
+                Thread.sleep(3000);
+            }catch(InterruptedException e){}
+
+        }
+
     }
 }
