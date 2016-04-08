@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +20,9 @@ import com.parse.ParseGeoPoint;
 import com.parse.ParsePush;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import bolts.Task;
 
@@ -171,20 +175,11 @@ public class LoginSignupActivity extends Activity {
         @Override
         protected void onProgressUpdate(Integer... values) {
             super.onProgressUpdate(values);
-
-            //Toast.makeText(getApplicationContext(), "Servicio Iniciado", Toast.LENGTH_LONG).show();
-
         }
 
         @Override
         protected void onPostExecute(Boolean bool) {
-            //Ciclo que realiza la actualizacion
-            if (bool){
-                for(int i=0; i<7;i++){
-                    Toast.makeText(getApplicationContext(), "Ubicacion actualizada", Toast.LENGTH_LONG).show();
-                }
 
-            }
         }
 
         @Override
@@ -193,13 +188,14 @@ public class LoginSignupActivity extends Activity {
             Toast.makeText(getApplicationContext(), "Tarea Cancelada", Toast.LENGTH_LONG).show();
         }
 
+        public String TAG ="Update";
         //Metodo que genera la tarea 3 segundos
         private void Tarea(){
-            try{
-                Thread.sleep(3000);
-            }catch(InterruptedException e){}
-
+            new Timer().scheduleAtFixedRate(new TimerTask() {
+                public void run() {
+                    Log.d(TAG,"Actualizando");
+                }
+            }, 0, 3000);
         }
-
     }
 }
