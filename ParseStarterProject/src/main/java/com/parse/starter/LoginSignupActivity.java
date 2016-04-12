@@ -23,6 +23,9 @@ import com.parse.SignUpCallback;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import bolts.Task;
 
@@ -189,13 +192,22 @@ public class LoginSignupActivity extends Activity {
         }
 
         public String TAG ="Update";
-        //Metodo que genera la tarea 3 segundos
-        private void Tarea(){
-            new Timer().scheduleAtFixedRate(new TimerTask() {
+
+        //Metodo que genera la tarea 5 segundos
+        private void Tarea() {
+            ScheduledExecutorService scheduler =
+                    Executors.newSingleThreadScheduledExecutor();
+            scheduler.scheduleAtFixedRate(new Runnable() {
                 public void run() {
-                    Log.d(TAG,"Actualizando");
+                    Log.d(TAG, "Actualizando...");
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+                            Toast.makeText(getApplicationContext(), "Actualizando", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
                 }
-            }, 0, 3000);
+            }, 1, 5, TimeUnit.SECONDS);
         }
     }
 }

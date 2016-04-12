@@ -15,6 +15,8 @@ import com.parse.ParseUser;
 import java.text.ParsePosition;
 import java.util.concurrent.TimeUnit;
 
+import bolts.Task;
+
 public class Bienvenida extends Activity {
     Button logout;
     @Override
@@ -31,14 +33,12 @@ public class Bienvenida extends Activity {
         // Obetniendo usuario actual
         ParseUser currentUser = ParseUser.getCurrentUser();
 
-        // Conversion de usuario actual a String
+        // Conversion de usuario y oordenadas actuales actual a String
         String struser = currentUser.getUsername().toString();
-        // Conversion de coordenadas actuales a String
         final String strlocation = currentUser.get("location").toString();
 
-        // Estableciendo String de usuario a TextView
+        // Estableciendo String de usuario y Coordenadasa TextView
         txtuser.setText(" " + struser);
-        // Estableciendo String de Coordenadas a TextView
         txtlocation.setText(" " + strlocation);
 
         // Evento de Boton Fin de Seseion
