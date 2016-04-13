@@ -66,7 +66,7 @@ public class LoginSignupActivity extends Activity {
                 TaskT task = new TaskT();
                 task.execute();
 
-                //Logeo con usuario y contrasenha existentes
+                //Logeo con usuario y contraseña existentes
                 ParseUser.logInInBackground(usernametxt, passwordtxt, new LogInCallback() {
                     public void done(ParseUser user, ParseException e) {
                         if (user != null) {
@@ -99,8 +99,8 @@ public class LoginSignupActivity extends Activity {
                     user.setPassword(passwordtxt);
 
                     //Estableciendo ubicacion
-                    ParseGeoPoint point = new ParseGeoPoint(31, 14);
-                    user.put("location", point);
+                    //ParseGeoPoint point = new ParseGeoPoint(31, 14);
+                    //user.put("location", point);
 
                     user.signUpInBackground(new SignUpCallback() {
 
@@ -171,7 +171,7 @@ public class LoginSignupActivity extends Activity {
         @Override
         protected Boolean doInBackground(Void... params) {
             //Ejecutando tarea 3 segundos
-            Tarea();
+           // Tarea();
             return true;
         }
 
@@ -191,23 +191,16 @@ public class LoginSignupActivity extends Activity {
             Toast.makeText(getApplicationContext(), "Tarea Cancelada", Toast.LENGTH_LONG).show();
         }
 
-        public String TAG ="Update";
+        //public String TAG ="Update";
 
         //Metodo que genera la tarea 5 segundos
-        private void Tarea() {
-            ScheduledExecutorService scheduler =
-                    Executors.newSingleThreadScheduledExecutor();
-            scheduler.scheduleAtFixedRate(new Runnable() {
-                public void run() {
-                    Log.d(TAG, "Actualizando...");
-                    runOnUiThread(new Runnable() {
-                        public void run() {
-                            Toast.makeText(getApplicationContext(), "Actualizando", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-                }
-            }, 1, 5, TimeUnit.SECONDS);
-        }
+        //private void Tarea() {
+        //  ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+        // scheduler.scheduleAtFixedRate(new Runnable() {
+        //  public void run() {
+        //    Log.d(TAG, "Actualizando...");
+        //  }
+        // }, 1, 5, TimeUnit.SECONDS);
+        //}
     }
 }
