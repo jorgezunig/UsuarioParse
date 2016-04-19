@@ -171,7 +171,7 @@ public class LoginSignupActivity extends Activity {
         @Override
         protected Boolean doInBackground(Void... params) {
             //Ejecutando tarea 3 segundos
-           // Tarea();
+            Tarea();
             return true;
         }
 
@@ -191,16 +191,16 @@ public class LoginSignupActivity extends Activity {
             Toast.makeText(getApplicationContext(), "Tarea Cancelada", Toast.LENGTH_LONG).show();
         }
 
-        //public String TAG ="Update";
+        public String TAG ="Update";
 
         //Metodo que genera la tarea 5 segundos
-        //private void Tarea() {
-        //  ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
-        // scheduler.scheduleAtFixedRate(new Runnable() {
-        //  public void run() {
-        //    Log.d(TAG, "Actualizando...");
-        //  }
-        // }, 1, 5, TimeUnit.SECONDS);
-        //}
+        private void Tarea() {
+          ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+         scheduler.scheduleAtFixedRate(new Runnable() {
+          public void run() {
+            Log.d(TAG, "Actualizando...");
+          }
+         }, 1, 5, TimeUnit.SECONDS);
+        }
     }
 }
