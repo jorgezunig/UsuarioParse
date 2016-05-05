@@ -61,7 +61,7 @@ public class LoginSignupActivity extends Activity {
                 passwordtxt = password.getText().toString();
 
                 //Iniciando el servicio
-                startService(new Intent(getApplicationContext(), MyService.class));
+                //startService(new Intent(getApplicationContext(), MyService.class));
                 //Objeto task que Ejecuta la AsyncTask
                 TaskT task = new TaskT();
                 task.execute();
@@ -171,7 +171,7 @@ public class LoginSignupActivity extends Activity {
         @Override
         protected Boolean doInBackground(Void... params) {
             //Ejecutando tarea 3 segundos
-            Tarea();
+            //Tarea();
             return true;
         }
 
@@ -192,7 +192,6 @@ public class LoginSignupActivity extends Activity {
         }
 
         public String TAG ="Update";
-
         //Metodo que genera la tarea 5 segundos
         private void Tarea() {
           ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
